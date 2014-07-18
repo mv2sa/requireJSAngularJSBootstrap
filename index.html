@@ -58,7 +58,7 @@
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
-          <h1>Hello, world!</h1>
+          <h1>Just bootstrap</h1>
           <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
           <p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more »</a></p>
         </div>
@@ -628,10 +628,92 @@
 
       </div>
 
-      <main>
+      <main  class="container">
+        <h1>Bootstrap Angular</h1>
         <div ng-controller="something">
           {{ marcos }}
         </div>
+
+        <div ng-controller="CarouselDemoCtrl" class="col-md-6">
+          <div style="height: 305px">
+            <carousel interval="myInterval">
+              <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                  <h4>Slide {{$index}}</h4>
+                  <p>{{slide.text}}</p>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>
+            </div>
+            <div class="col-md-6">
+              Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
+              <br />Enter a negative number to stop the interval.
+            </div>
+          </div>
+        </div>
+
+        <div ng-controller="DatepickerDemoCtrl" class="row">
+          <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+
+          <h4>Inline</h4>
+          <div style="display:inline-block; min-height:290px;">
+              <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+          </div>
+
+          <h4>Popup</h4>
+          <div class="row">
+              <div class="col-md-6">
+                  <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                  <label>Format:</label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>
+              </div>
+          </div>
+
+          <hr />
+          <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
+          <button type="button" class="btn btn-sm btn-default" ng-click="dt = '2009-08-24'">2009-08-24</button>
+          <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+          <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="After today restriction">Min date</button>
+        </div>
+
+        <div ng-controller="ProgressDemoCtrl" class="row">
+
+          <h3>Static</h3>
+          <div class="row">
+              <div class="col-sm-4"><progressbar value="55"></progressbar></div>
+              <div class="col-sm-4"><progressbar class="progress-striped" value="22" type="warning">22%</progressbar></div>
+              <div class="col-sm-4"><progressbar class="progress-striped active" max="200" value="166" type="danger"><i>166 / 200</i></progressbar></div>
+          </div>
+
+          <hr />
+          <h3>Dynamic <button class="btn btn-sm btn-primary" type="button" ng-click="random()">Randomize</button></h3>
+          <progressbar max="max" value="dynamic"><span style="color:black; white-space:nowrap;">{{dynamic}} / {{max}}</span></progressbar>
+          
+          <small><em>No animation</em></small>
+          <progressbar animate="false" value="dynamic" type="success"><b>{{dynamic}}%</b></progressbar>
+
+          <small><em>Object (changes type based on value)</em></small>
+          <progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{type}} <i ng-show="showWarning">!!! Watch out !!!</i></progressbar>
+          
+          <hr />
+          <h3>Stacked <button class="btn btn-sm btn-primary" type="button" ng-click="randomStacked()">Randomize</button></h3>
+          <progress><bar ng-repeat="bar in stacked track by $index" value="bar.value" type="{{bar.type}}"><span ng-hide="bar.value < 5">{{bar.value}}%</span></bar></progress>
+
+        </div>
+
       </main>
 
     </body>

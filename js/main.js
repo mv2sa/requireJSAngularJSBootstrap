@@ -3,11 +3,11 @@
 requirejs.config({
     paths : {
         "angular" : "angular.min",
-        "uiBootstrap" : "ui-bootstrap-tpls-0.11.0.min"
+        "uiBootstrap" : "ui-bootstrap.min"
     },
     shim : {
         "angular" : {"exports" : "angular"},
-    	"uiBootstrap" : {"deps" : "angular"},
+    	"uiBootstrap" : {"deps" : ["angular"]},
         "bootstrap/affix":      { "exports": "$.fn.affix" }, 
         "bootstrap/alert":      { "exports": "$.fn.alert" },
         "bootstrap/button":     { "exports": "$.fn.button" },
