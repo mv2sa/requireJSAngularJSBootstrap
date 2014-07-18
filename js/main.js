@@ -25,13 +25,3 @@ require(["angular", "app"], function (angular, app) {
     });
 
 });
-
-require(["bootstrap"], function (angular, app) {
-
-    var $angularBoot = angular.element(document.getElementById('main'));
-
-    angular.element().ready(function() {
-        angular.resumeBootstrap([app['name']]);
-    });
-
-});
